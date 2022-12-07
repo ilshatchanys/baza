@@ -1,0 +1,150 @@
+<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();?>
+<?
+global $arTheme, $arRegion, $bLongHeader2, $dopClass;
+$arRegions = CMaxRegionality::getRegions();
+if($arRegion)
+	$bPhone = ($arRegion['PHONES'] ? true : false);
+else
+	$bPhone = ((int)$arTheme['HEADER_PHONES'] ? true : false);
+$logoClass = ($arTheme['COLORED_LOGO']['VALUE'] !== 'Y' ? '' : ' colored');
+$bLongHeader2 = true;
+$dopClass = 'wides_menu smalls big_header';
+?>
+<div class="header-wrapper fix-logo header-v25">
+	<div class="logo_and_menu-row icons_top showed ">
+		<div class="maxwidth-theme wides logo-row icons_bottom">
+			
+			<div class="header__sub-inner">
+				<div class = "header__left-part ">
+					<div class = "header__main-item">
+						<div class="line-block line-block--40">
+							
+							<div class="logo<?=$logoClass?> line-block__item no-shrinked">
+								<?=CMax::ShowLogo();?>
+							</div>
+							<div class="float_wrapper fix-block abs-block line-block__item">
+								<div class="hidden-sm hidden-xs">
+									<div class="top-description addr">
+										<?$APPLICATION->IncludeFile(SITE_DIR."include/top_page/slogan.php", array(), array(
+												"MODE" => "html",
+												"NAME" => "Text in title",
+												"TEMPLATE" => "include_area.php",
+											)
+										);?>
+									</div>
+								</div>
+							</div>
+						</div>		
+					</div>
+				</div>	
+					
+				<div class="content-block header__right-part minwidth0 <?=($APPLICATION->GetShowIncludeAreas() || CMax::checkContentFile(SITE_DIR.'include/top_page/slogan.php') ? "" : "no-area")?>">
+					
+					<div class="subtop  lines-block header__top-part ">
+						
+						<!-- <div class="header__top-item">
+								
+						</div>		 -->
+						<div class="header__top-item with_padding_right">
+							<?if($arRegions):?>
+								
+								<div class="top-description no-title">
+									<?\Aspro\Functions\CAsproMax::showRegionList();?>
+								</div>
+								
+							<?endif;?>
+							<div class="wrap_icon inner-table-block">
+								<div class="phone-block icons flexbox flexbox--row">
+									<?if($bPhone):?>
+										<?CMax::ShowHeaderPhones('');?>
+									<?endif?>
+									<?$callbackExploded = explode(',', $arTheme['SHOW_CALLBACK']['VALUE']);
+									if( in_array('HEADER', $callbackExploded) ):?>
+										<div class="inline-block">
+											<span class="callback-block animate-load font_upper_xs colored" data-event="jqm" data-param-form_id="CALLBACK" data-name="callback"><?=GetMessage("CALLBACK")?></span>
+										</div>
+									<?endif;?>
+								</div>
+							</div>
+						</div>
+						
+						<div class="header__top-item">
+							<div class="inner-table-block">
+								<?CMax::showAddress('address inline-block tables no-icons');?>
+							</div>
+						</div>
+								
+						<div class="right-icons  header__top-item  logo_and_menu-row   showed">
+							<div class="line-block line-block--40 line-block--40-1200">
+								<?$arShowSites = \Aspro\Functions\CAsproMax::getShowSites();?>
+								<?$countSites = count($arShowSites);?>
+								<?if ($countSites > 1) :?>
+									<div class="line-block__item no-shrinked">
+										<div class="wrap_icon inner-table-block">
+											<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
+												array(
+													"COMPONENT_TEMPLATE" => ".default",
+													"PATH" => SITE_DIR."/include/header_include/site.selector.php",
+													"SITE_LIST" => $arShowSites,
+													"AREA_FILE_SHOW" => "file",
+													"AREA_FILE_SUFFIX" => "",
+													"AREA_FILE_RECURSIVE" => "Y",
+													"EDIT_TEMPLATE" => "include_area.php",
+												),
+												false, array("HIDE_ICONS" => "Y")
+											);?>
+										</div>
+									</div>
+								<?endif;?>
+								<div class="line-block__item no-shrinked">
+									<div class="wrap_icon">
+										<button class="top-btn inline-search-show">
+											<?=CMax::showSpriteIconSvg(SITE_TEMPLATE_PATH."/images/svg/header_icons_srite.svg#search", "svg-inline-search search", ['WIDTH' => 17,'HEIGHT' => 17]);?>
+											<span class="title"><?=GetMessage("CT_BST_SEARCH_BUTTON")?></span>
+										</button>
+									</div>
+								</div>
+								<div class="line-block__item no-shrinked">
+									<div class="wrap_icon inner-table-block1 person">
+										<?=CMax::showCabinetLink(true, true, 'big');?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="subcontent">
+						<div class="subbottom menu-row header__main-part minwidth0">
+						<?if (CMax::GetFrontParametrValue("ORDER_BASKET_VIEW") === "NORMAL"):?>
+								<div class="right-icons  wb top-block-item logo_and_menu-row  pos-static header__main-item">
+									<div class="line-block__item line-block line-block--40 line-block--40-1200">
+										<?=CMax::ShowBasketWithCompareLink('', 'big', '', 'wrap_icon wrap_basket baskets');?>
+									</div>
+								</div>
+							<?endif;?>
+							<div class="header__main-item  minwidth0 flex1 order-1">
+								<div class="menu">
+									<div class="menu-only">
+										<nav class="mega-menu sliced heightauto">
+											<?$APPLICATION->IncludeComponent("bitrix:main.include", ".default",
+												array(
+													"COMPONENT_TEMPLATE" => ".default",
+													"PATH" => SITE_DIR."include/menu/menu.".($arTheme["HEADER_TYPE"]["LIST"][$arTheme["HEADER_TYPE"]["VALUE"]]["ADDITIONAL_OPTIONS"]["MENU_HEADER_TYPE"]["VALUE"] == "Y" ? "top_catalog_wide" : "top").".php",
+													"AREA_FILE_SHOW" => "file",
+													"AREA_FILE_SUFFIX" => "",
+													"AREA_FILE_RECURSIVE" => "Y",
+													"EDIT_TEMPLATE" => "include_area.php"
+												),
+												false, array("HIDE_ICONS" => "Y")
+											);?>
+										</nav>
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="lines-row"></div>
+		</div>
+	</div>
+</div>

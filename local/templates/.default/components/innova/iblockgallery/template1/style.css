@@ -1,0 +1,155 @@
+.innova_iblockgallery_item {
+	width: 400px;
+	height: 400px;
+	transform: none;
+    opacity: 1;
+    float: none;
+    display: inline-block;
+    position: relative;
+    top: initial;
+    left: initial;
+    vertical-align: top;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.innova_iblockgallery_item_image img {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+	height: 102%;
+    width: auto !important;
+    max-width: unset;
+	-webkit-transition: all 700ms ease;
+    transition: all 700ms ease;
+    z-index: 0;
+	-webkit-backface-visibility: hidden;
+}
+
+.innova_iblockgallery_item:hover .innova_iblockgallery_item_image img {
+    -webkit-transform: perspective(500px) scale3d(1.15, 1.15, 1) rotateZ(3deg) translate(-50%, -50%);
+    transform: perspective(500px) scale3d(1.1, 1.1, 1) rotateZ(3deg) translate(-50%, -50%);
+}
+.innova_iblockgallery_item_image .innova_iblockgallery_item_video {
+	display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0.6em;
+    right: 0.6em;
+    width: 1.8em;
+    height: 1.8em;
+    transition: all 0.3s ease;
+}
+.innova_iblockgallery_item_image .innova_iblockgallery_item_video svg {
+	fill: #fff;
+}
+.innova_iblockgallery_item:hover .innova_iblockgallery_item_image .innova_iblockgallery_item_video {
+	opacity: 0;
+}
+.innova_iblockgallery_item_information {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.4s ease;
+    transition: opacity 0.4s ease;
+    z-index: 2;
+}
+.innova_iblockgallery_item_information_text {
+	font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	text-align: center;
+    height: 100%;
+    padding: 15px;
+    color: #fff;
+    word-wrap: break-word;
+    z-index: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+.innova_iblockgallery_item_information_text a {
+	color: rgb(89, 211, 243) !important;
+}
+.innova_iblockgallery_item_information_text a:hover {
+	color: rgb(89, 211, 243) !important;
+	text-decoration: underline !important;
+}
+.innova_iblockgallery_item:hover .innova_iblockgallery_item_information {
+    opacity: 1;
+}
+.innova_iblockgallery_item_information_bar {
+	position: absolute;
+    width: 100%;
+    bottom: 0;
+    z-index: 100;
+	color: rgb(241, 239, 240) !important;
+	margin: 0;
+    border-top: 1px solid rgba(229,226,220,0.4);
+    padding: 10px 7%;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 21px;
+    height: 44px;
+    text-align: left;
+    clear: both;
+    box-sizing: border-box;
+	display: flex;
+    justify-content: center;
+}
+.innova_iblockgallery_overlay {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.innova_iblockgallery_nav {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+	margin-top: 15px;
+}
+.innova_iblockgallery_nav span {
+	color: #fff;
+	margin: 5px;
+	background: #b3b3b3;
+	padding: 5px 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+	cursor: pointer;
+	-webkit-transition: 1s;
+	-o-transition: 1s;
+	transition: 1s;
+}
+.innova_iblockgallery_nav span.tns-nav-active {
+    background: #4a4a4a;
+}
